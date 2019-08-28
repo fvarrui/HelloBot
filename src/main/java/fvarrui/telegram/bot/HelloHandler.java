@@ -57,21 +57,14 @@ public class HelloHandler extends TelegramLongPollingBot {
 		
 		if (command == null) return;
 		
-		switch(command) {
-		case "/help":
-			sendMessage(chatId, "HelloBot commmands:\n- /hello = say hi!\n/byebye = shutdown hellobot");
-			break;
-		case "/hello":
-			sendMessage(chatId, "Hi " + update.getMessage().getFrom().getUserName() + "! It's " + LocalDateTime.now());
-			break;
-		case "/hello@Hello20190828Bot":
-			sendMessage(chatId, "Hi everybody people in da house! It's " + LocalDateTime.now());
-			break;
-//		case "/byebye":
-//		case "/byebye@Hello20190828Bot":
-//			sendMessage(chatId, "Ciao bambinos!");
-//			System.exit(0);
-		}
+		if (command.equals("/help") || command.equals("/start"))
+			sendMessage(chatId, "HelloBot commmands:\n- /hello = say hi!\n- /byebye = shutdown hellobot (disabled)");
+		else if (command.startsWith("/hello"))
+			sendMessage(chatId, "Hi @" + update.getMessage().getFrom().getUserName() + "! It's " + LocalDateTime.now());
+		else if (command.startsWith("/bye"))
+			sendMessage(chatId, "Ciao @" + update.getMessage().getFrom().getUserName() + "!");
+		else
+			sendMessage(chatId, "What do you mean with '" + update.getMessage().getText() + "'?");
 		
 	}
 
