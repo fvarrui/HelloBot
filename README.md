@@ -23,4 +23,4 @@ mvn exec:java -Dexec.mainClass="fvarrui.telegram.bot.Main" -Dtoken=<token> -Duse
 
 ## Create your bot 
 
-Follow this [link](https://telegram.me/botfather) to register your own bot.
+Follow this [link](https://telegram.me/botfather) to register your own bot, and use the given `token` and `username` in the previous command.
