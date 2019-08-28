@@ -1,6 +1,8 @@
 # HelloBot
 
-Telegram Bot example in Java language that says "Hi!" if you said "/hello".
+Telegram Bot example in Java language that says `Hi!` if you said `/hello`.
+
+![HelloBot in action](docs/image01.png)
 
 ## Compile 
 
