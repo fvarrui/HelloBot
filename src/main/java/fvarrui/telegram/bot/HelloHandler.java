@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class HelloHandler extends TelegramLongPollingBot {
 	
-	private String token; 
+	private String token;
 	private String username;
 	
 	public HelloHandler() {
