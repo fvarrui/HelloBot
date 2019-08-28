@@ -12,30 +12,34 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class HelloHandler extends TelegramLongPollingBot {
 	
 	private String token;
-	private String username;
+	private String botname;
 	
 	public HelloHandler() {
 		super();
 		
 		try {
+			
 			// read properties from bot.properties file if it exists (development)
 			ResourceBundle bundle = ResourceBundle.getBundle("bot");
 			token = bundle.getString("token");
-			username = bundle.getString("username");
+			botname = bundle.getString("botname");
+			
 		} catch (MissingResourceException e) {
+			
 			// if properties file not found, get properties from environment (production)
-			token = System.getenv("token");
-			username = System.getenv("username");
+			token = System.getProperty("token");
+			botname = System.getProperty("botname");
+			
 		}
 		
 		System.out.println("HelloBot running ... ");
-		System.out.println("* username : " + username);
-		System.out.println("* token    : " + token);
+		System.out.println("* botname : " + botname);
+		System.out.println("* token   : " + token);
 	}
 
 	@Override
 	public String getBotUsername() {
-		return username;
+		return botname;
 	}
 
 	@Override
@@ -54,16 +58,19 @@ public class HelloHandler extends TelegramLongPollingBot {
 		if (command == null) return;
 		
 		switch(command) {
+		case "/help":
+			sendMessage(chatId, "HelloBot commmands:\n- /hello = say hi!\n/byebye = shutdown hellobot");
+			break;
 		case "/hello":
-			sendMessage(chatId, "Hi! It's " + LocalDateTime.now());
+			sendMessage(chatId, "Hi " + update.getMessage().getFrom().getUserName() + "! It's " + LocalDateTime.now());
 			break;
 		case "/hello@Hello20190828Bot":
 			sendMessage(chatId, "Hi everybody people in da house! It's " + LocalDateTime.now());
 			break;
-		case "/byebye":
-		case "/byebye@Hello20190828Bot":
-			sendMessage(chatId, "Ciao bambinos!");
-			System.exit(0);
+//		case "/byebye":
+//		case "/byebye@Hello20190828Bot":
+//			sendMessage(chatId, "Ciao bambinos!");
+//			System.exit(0);
 		}
 		
 	}
