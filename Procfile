@@ -1,1 +1,1 @@
-worker: java -Dtoken=$TOKEN -Dusername=$USERNAME -jar target/HelloBot-0.0.1-jar-with-dependencies.jar
+worker: java -Dtoken=$TOKEN -Dbotname=$BOTNAME -jar target/HelloBot-0.0.1.jar
